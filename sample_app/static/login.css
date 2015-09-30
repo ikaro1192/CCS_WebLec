@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  list-style: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  font: 15px/1.25 'Alef';
+  color: #111111;
+}
+form {
+  margin: 70px auto;
+  background: #2a3644;
+  width: 347px;
+  text-align: center;
+  padding: 40px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  border-radius: 6px;
+}
+form > h1 {
+  color: #f4f4f4;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.7);
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+input {
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+  display: block;
+  width: 269px;
+  padding: 15px;
+  margin-bottom: 10px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  outline: none;
+}
+input:focus {
+  background: rgba(0, 0, 0, 0.1);
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+::-webkit-input-placeholder {
+  color: rgba(225, 225, 225, 0.4);
+}
+:-moz-placeholder {
+  color: rgba(225, 225, 225, 0.4);
+}
+::-moz-placeholder {
+  color: rgba(225, 225, 225, 0.4);
+}
+:-ms-input-placeholder {
+  color: rgba(225, 225, 225, 0.4);
+}
+button {
+  position: relative;
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 17px;
+  width: 270px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  font-size: 1.2em;
+  background: #f26964;
+  color: #f4f4f4;
+  box-shadow: 0px 3px 0px #ab4b47;
+  cursor: pointer;
+}
+button:active {
+  top: 3px;
+  box-shadow: none;
+}
+
+strong{
+    font-size: medium;
+    text-shadow: 1px 1px 0 rgba(0,0,0,.1);
+     color: #ff3333;
+}

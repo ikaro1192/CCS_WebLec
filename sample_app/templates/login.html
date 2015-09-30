@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>ログイン</title>
+        <link rel="stylesheet" type="text/css" href="static/login.css"/>
+        <!--&#91;if lt IE 9&#93;>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <!&#91;endif&#93;-->
+    </head>
+    <body>
+
+
+        <form action="/login" method="post">
+            <h1>Login</h1>
+            {% if error %}<strong> {{ error }} </strong> {% endif %}
+            <input type="text" name="name" placeholder="Username" required/>
+            <input type="password" name="pass" placeholder="Password" required/>
+            <button>Login</button>
+        </form>
+
+    </body>
+</html>
