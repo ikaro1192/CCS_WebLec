@@ -4,9 +4,11 @@ from flask import Flask,request
 
 app = Flask(__name__)
 
-@app.route('/calc',methods=['GET'])
+@app.route('/')
 def hello_world():
-    return request.args.get("name")
+    who = request.args.get("name")
+    return who
 
 if __name__ == '__main__':
     app.run(debug=True)
+
