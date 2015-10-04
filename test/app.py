@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    who = request.args.get("name")
+    who = request.args.get("who")
     return who
 
 if __name__ == '__main__':
