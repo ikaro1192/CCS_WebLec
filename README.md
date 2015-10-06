@@ -6,6 +6,11 @@
 
 Pythonを用いて、小規模ではあるけれどDBを使うようなWebアプリケーションが作れるようになるはず。
 
+# 目次
+1. [Webアプリケーション入門](1.md)
+2. [データ構造と制御構造](2.md)
+
+
 # ライセンス
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.ja"><img alt="クリエイティブ・コモンズ・ライセンス" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a>
