@@ -72,8 +72,8 @@ def logout_view():
     session.pop('user_id', None)
     return 'logout'
 
-@app.route('/borrow/<book_id>', methods=['POST'])
-def borrow(book_id):
+@app.route('/loan/<book_id>', methods=['POST'])
+def loan_view(book_id):
         con = connect_db()
         cur = con.cursor()
         cur.execute('insert into LoanInfo(user_id,book_id) values(?,?)',(session['user_id'], book_id))
@@ -82,7 +82,7 @@ def borrow(book_id):
         return '貸出処理しました!'
 
 @app.route('/return', methods=['GET','Post'])
-def return_book():
+def return_book_view():
     con = connect_db()
     cur = con.cursor()
     cur.execute('delete from LoanInfo where user_id=?',(session['user_id'],))
@@ -93,4 +93,3 @@ def return_book():
 
 if __name__ == '__main__':
         app.run(debug=True)
-
