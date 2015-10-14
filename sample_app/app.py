@@ -1,7 +1,10 @@
-#!/bin/python3
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
 
 from flask import Flask, session, request, redirect, render_template
 import sqlite3
+import hashlib
+import time
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'The secret key which ciphers the cookie'
@@ -23,6 +26,9 @@ def check_loan():
     cur.execute('select * from LoanInfo where user_id=?',(session['user_id'],))
     loanInfo = cur.fetchone()
     return loanInfo is not None
+
+def calculate_password_hash(password, salt):
+    return hashlib.sha256(password + ':' + salt).hexdigest()
 
 @app.before_request
 def before_request():
