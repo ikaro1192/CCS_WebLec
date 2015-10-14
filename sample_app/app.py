@@ -11,7 +11,7 @@ app.config['SECRET_KEY'] = 'The secret key which ciphers the cookie'
 
 
 def connect_db():
-    con = sqlite3.connect('data.db')
+    con = sqlite3.connect('data2.db')
     con.row_factory = sqlite3.Row
     return con
 
@@ -28,10 +28,14 @@ def check_loan():
     return loanInfo is not None
 
 def calculate_password_hash(password, salt):
-    return hashlib.sha256(password + ':' + salt).hexdigest()
+    text=(password+salt).encode('utf-8')
+    result = hashlib.sha512(text).hexdigest()
+    return result
 
 @app.before_request
 def before_request():
+    if request.path == '/static':
+        return
     if request.path == '/login':
         return
 
@@ -40,7 +44,6 @@ def before_request():
     else:
         return redirect('/login')
 
-
 @app.route('/')
 def index_view():
     if check_loan():
@@ -48,9 +51,10 @@ def index_view():
     else:
         con = connect_db()
         cur = con.cursor()
-        cur.execute('select name from Books')
+        cur.execute('select * from Books')
         books = cur.fetchall()
         con.close()
+        print(books[0]['id'])
         return render_template('index.html',books=books)
 
 
@@ -64,7 +68,7 @@ def login_view():
         user = cur.fetchone()
         con.close()
 
-        if (user is not None) and (user['pass'] == request.form['pass']):
+        if (user is not None) and (user['pass_hash'] == calculate_password_hash(request.form['pass'], user['salt'])):
             session['user_id'] = user['id']
             return redirect('/')
         else:

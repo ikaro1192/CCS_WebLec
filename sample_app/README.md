@@ -24,6 +24,8 @@ else:
 ##ユーザ情報
 create table Users(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL, pass TEXT NOT NULL);
 
+create table Users(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL, pass_hash TEXT NOT NULL, salt TEXT NOT NULL);
+
 ## 図書情報
 create table Books(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL);
 

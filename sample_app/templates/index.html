@@ -2,9 +2,7 @@
 <title>Hello from Flask</title>
     <h1>Book List</h1>
         {% for book in books %}
-            <form action="/borrow/{{book['name']}}" method="post">
+            <form action="/loan/{{book['id']}}" method="post">
                 {{book['name']}}<input type="submit" value="送信">
             </form>
         {% endfor %}
-
-

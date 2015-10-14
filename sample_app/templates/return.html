@@ -2,8 +2,6 @@
 <title>Hello from Flask</title>
     <h1>Book List</h1>
         You borrow book now!
-        <form action="{{ url_for('return_book') }}" method="post">
+        <form action="{{ url_for('return_book_view') }}" method="post">
             <input type="submit" value="返却">
         </form>
-
-
