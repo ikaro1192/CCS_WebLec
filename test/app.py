@@ -1,7 +1,18 @@
-#!/bin/python3
-# coding: UTF-8
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
 
-from myfuncs import add, subtract
+from flask import Flask, redirect
 
-print(add(6,4))
-print(subtract(6,4))
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return redirect("/login")
+
+@app.route("/login")
+def login():
+    return "login"
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
