@@ -5,7 +5,7 @@ from flask import Flask, redirect ,request
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/",methods=['POST'])
 def index():
     who = request.args.get("name")
     passwd = request.args.get("pass")
@@ -26,7 +26,7 @@ def login():
     </head>
     <body>
 
-        <form action="/" method="get">
+        <form action="/" method="post">
             <h1>Login</h1>
             <input type="text" name="name" placeholder="Username" required/>
             <input type="password" name="pass" placeholder="Password" required/>
