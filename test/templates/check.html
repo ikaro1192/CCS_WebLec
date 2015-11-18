@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>年齢確認</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}" />
+    <!--&#91;if lt IE 9&#93;>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <!&#91;endif&#93;-->
+</head>
+<body>
+
+    <form action="/" method="post">
+        <h1>Login</h1>
+        <input type="text" name="name" placeholder="名前" required/>
+        <input type="text" name="age" placeholder="年齢" required/>
+        <button>年齢確認</button>
+    </form>
+
+</body>
+</html>
