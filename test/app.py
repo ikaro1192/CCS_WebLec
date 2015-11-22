@@ -1,19 +1,14 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-from flask import Flask, redirect ,request,render_template
+from sqlite3 import connect,Row
 
-app = Flask(__name__)
+con = connect('test.db')
+#取得する形式をディクショナリに
+con.row_factory = Row
 
-@app.route("/check")
-def check():
-    return render_template('check.html')
-
-@app.route('/',methods=['POST'])
-def index():
-    my_age = int(request.form["age"])
-    my_name = request.form["name"]
-    return render_template('index.html',age=my_age,name=my_name)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+cur = con.cursor()
+cur.execute('select * from Books')
+books = cur.fetchall()
+for book in books:
+    print(book['name']+"の価格は"+str(book['price'])+"です")
