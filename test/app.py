@@ -12,3 +12,13 @@ cur.execute('select * from Books')
 books = cur.fetchall()
 for book in books:
     print(book['name']+"の価格は"+str(book['price'])+"です")
+
+cur.execute('insert into Books(name,price) values("usuihon",1000)')
+
+cur = con.cursor()
+cur.execute('select * from Books')
+books = cur.fetchall()
+for book in books:
+    print(book['name']+"の価格は"+str(book['price'])+"です")
+
+cur.execute('insert into Books(name,price) values("test",500)')
