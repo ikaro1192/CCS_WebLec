@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, session, request, redirect, render_template
+from functools import wraps
 import sqlite3
 import hashlib
 import time
@@ -9,6 +10,14 @@ import time
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'The secret key which ciphers the cookie'
 
+# 認証ページ用デコレータ
+def auth_require(page):
+    @wraps(page)
+    def decorated_function(*args, **kwargs):
+        if not check_login():
+            return redirect('/login')
+        return page(*args, **kwargs)
+    return decorated_function
 
 def connect_db():
     con = sqlite3.connect('data2.db')
@@ -32,19 +41,8 @@ def calculate_password_hash(password, salt):
     result = hashlib.sha512(text).hexdigest()
     return result
 
-@app.before_request
-def before_request():
-    if request.path == '/static':
-        return
-    if request.path == '/login':
-        return
-
-    if check_login():
-        return
-    else:
-        return redirect('/login')
-
 @app.route('/')
+@auth_require
 def index_view():
     if check_loan():
         return render_template('return.html')
@@ -78,11 +76,13 @@ def login_view():
 
 
 @app.route('/logout')
+@auth_require
 def logout_view():
     session.pop('user_id', None)
     return 'logout'
 
 @app.route('/loan/<book_id>', methods=['POST'])
+@auth_require
 def loan_view(book_id):
         con = connect_db()
         cur = con.cursor()
@@ -92,6 +92,7 @@ def loan_view(book_id):
         return '貸出処理しました!'
 
 @app.route('/return', methods=['GET','Post'])
+@auth_require
 def return_book_view():
     con = connect_db()
     cur = con.cursor()
