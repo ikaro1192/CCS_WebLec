@@ -1,18 +1,34 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-from sqlite3 import connect,Row
+from flask import Flask, session, redirect, url_for,  request
 
-con = connect('test.db')
-#取得する形式をディクショナリに
-con.row_factory = Row
+app = Flask(__name__)
 
-book_name='ModernC++Design'
+@app.route('/')
+def index():
+    if 'username' in session:
+        return 'Hello' + str(session['username'])
+    return 'You are not logged in'
 
-cur = con.cursor()
-cur.execute('select * from Books where name=:book_name or id >1',{'book_name':book_name})
-books = cur.fetchall()
-for book in books:
-    print(book['name']+"の価格は"+str(book['price'])+"です")
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        session['username'] = request.form['username']
+        return redirect(url_for('index'))
+    return '''
+        <form action="" method="post">
+            <p><input type=text name=username>
+            <p><input type=submit value=Login>
+        </form>
+    '''
 
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('index'))
 
+app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+
+if __name__ == "__main__":
+    app.run(debug=True)

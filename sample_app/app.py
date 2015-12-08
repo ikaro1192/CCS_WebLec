@@ -8,7 +8,7 @@ import hashlib
 import time
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'The secret key which ciphers the cookie'
+app.config['SECRET_KEY'] = '\xfe\xbaK\xc4\xb2\xd5t\xf7\x189\xf1p<\xf4\xa2\xc1\xf4\x88\x9e\xc6\xd7\xa3\xda\xde'
 
 # 認証ページ用デコレータ
 def auth_require(page):
