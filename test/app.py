@@ -1,34 +1,42 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-from flask import Flask, session, redirect, url_for,  request
+from flask import Flask, redirect ,request
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route("/")
 def index():
-    if 'username' in session:
-        return 'Hello' + str(session['username'])
-    return 'You are not logged in'
+    who = request.form["name"]
+    passwd = request.form["pass"]
+    return  str(request.form)#str(who)+" "+str(passwd)
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route("/login")
 def login():
-    if request.method == 'POST':
-        session['username'] = request.form['username']
-        return redirect(url_for('index'))
-    return '''
-        <form action="" method="post">
-            <p><input type=text name=username>
-            <p><input type=submit value=Login>
+    html= """
+    <!DOCTYPE html>
+    <html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>ログイン</title>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}" />
+        <!--&#91;if lt IE 9&#93;>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <!&#91;endif&#93;-->
+    </head>
+    <body>
+
+        <form action="/" method="post">
+            <h1>Login</h1>
+            <input type="text" name="name" placeholder="Username" required/>
+            <input type="password" name="pass" placeholder="Password" required/>
+            <button type="submit">Login</button>
         </form>
-    '''
 
-@app.route('/logout')
-def logout():
-    session.pop('username', None)
-    return redirect(url_for('index'))
-
-app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+    </body>
+    </html>
+    """
+    return html
 
 if __name__ == "__main__":
     app.run(debug=True)
